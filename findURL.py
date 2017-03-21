@@ -1,21 +1,21 @@
-# Write Python code that assigns to the 
-# variable url a string that is the value 
-# of the first URL that appears in a link 
-# tag in the string page.
-# Your code should print http://udacity.com
-# Make sure that if page were changed to
+# Modify the get_next_target procedure so that
+# if there is a link it behaves as before, but
+# if there is no link tag in the input string,
+# it returns None, 0.
 
-# page = '<a href="http://udacity.com">Hello world</a>'
+# Note that None is not a string and so should
+# not be enclosed in quotes.
 
-# that your code still assigns the same value to the variable 'url', 
-# and therefore still prints the same thing.
+# Also note that your answer will appear in
+# parentheses if you print it.
 
-# page = contents of a web page
-page =('<div id="top_bin"><div id="top_content" class="width960">'
-'<div class="udacity float-left"><a href="http://udacity.com">')
-start_link = page.find('<a href=')
+def get_next_target(page):
+    start_link = page.find('<a href=')
 
-start_quote = page.find('"', start_link)
-end_quote = page.find('"', start_quote+1)
-url = page[start_quote+1:end_quote]
-print (url)
+    #Insert your code below here
+    if start_link == -1:
+        return None, 0
+    start_quote = page.find('"', start_link)
+    end_quote = page.find('"', start_quote + 1)
+    url = page[start_quote + 1:end_quote]
+    return url, end_quote
