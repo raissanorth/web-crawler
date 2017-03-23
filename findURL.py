@@ -8,6 +8,12 @@
 
 # Also note that your answer will appear in
 # parentheses if you print it.
+def get_page(url):
+	try: 
+		import urllib.request
+		return urllib.request.urlopen(url).read().decode('utf-8')
+	except: 
+		return
 
 def get_next_target(page):
     start_link = page.find('<a href=')
@@ -19,3 +25,14 @@ def get_next_target(page):
     end_quote = page.find('"', start_quote + 1)
     url = page[start_quote + 1:end_quote]
     return url, end_quote
+
+def print_all_links(page):
+	while True:
+		url, endpos = get_next_target(page)
+		if url:
+			print (url)
+			page = page[endpos:]
+		else:
+			break
+
+print_all_links(get_page('https://xkcd.com/353/'))
